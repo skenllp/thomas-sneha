@@ -90,6 +90,15 @@
     letter-spacing: 0.02em;
   }
 
+  /* Stronger-weight variant of .eyebrow for key kicker lines that need
+     better readability/contrast (hero "With Great Joy", countdown heading) */
+  .eyebrow-strong{
+    font-weight:600;
+    font-size: clamp(12px, 1.9vw, 15px);
+  }
+  .on-light .eyebrow-strong{ color: var(--dark-green); }
+  .on-dark .eyebrow-strong{ color: var(--ivory); }
+
   .script-accent{
     font-family: var(--script);
     font-weight:400;
@@ -355,8 +364,8 @@
   .page-lede{
     font-family: var(--serif);
     font-style: italic;
-    font-weight:400;
-    font-size: clamp(16px, 2.4vw, 20px);
+    font-weight:500;
+    font-size: clamp(18px, 2.7vw, 22px);
     line-height:1.6;
     max-width: 420px;
   }
@@ -370,20 +379,21 @@
   .page-name{
     font-family: var(--serif);
     font-weight:600;
-    font-size: clamp(38px, 8.6vw, 72px);
+    font-size: clamp(32px, 7.2vw, 60px);
     line-height:1.05;
     letter-spacing: 0.01em;
   }
   .page-amp{
     font-family: var(--script);
-    font-size: clamp(28px, 5vw, 42px);
+    font-size: clamp(24px, 4.4vw, 36px);
     color: var(--gold);
     margin: -4px 0;
   }
   .page-date-row{
     display:flex;
+    flex-direction:column;
     align-items:center;
-    gap: 16px;
+    gap: 10px;
     margin-top: 14px;
   }
   .page-dot{ width:5px; height:5px; border-radius:50%; background: var(--gold); }
@@ -451,8 +461,8 @@
   /* ---------- Invitation wording line ---------- */
   .invite-line{
     font-family: var(--sans);
-    font-weight: 500;
-    font-size: clamp(11px, 1.7vw, 14px);
+    font-weight: 600;
+    font-size: clamp(12.5px, 1.9vw, 15.5px);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     max-width: 460px;
@@ -491,7 +501,8 @@
     max-width: 280px;
   }
   .family-branch-label{
-    font-size: 11px;
+    font-size: 11.5px;
+    font-weight: 600;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--gold);
@@ -500,7 +511,8 @@
   }
   .family-names{
     font-family: var(--serif);
-    font-size: clamp(22px, 3.8vw, 32px);
+    font-weight: 600;
+    font-size: clamp(23px, 3.9vw, 33px);
     margin: 0 0 20px;
     line-height:1.5;
   }
@@ -514,8 +526,8 @@
   .branch-divider{ width: 120px; margin: 0 auto 24px; opacity:.85; }
   .family-address{
     font-family: var(--sans);
-    font-weight:300;
-    font-size: 13px;
+    font-weight:400;
+    font-size: 13.5px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     line-height:2;
@@ -530,30 +542,9 @@
     .family-divider-v{ display:block; }
   }
 
-  /* ---------- QR / location block ---------- */
-  .qr-block{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap: 10px;
-    margin: 22px 0 4px;
-  }
-  .qr-block img{
-    width: 108px;
-    height: 108px;
-    background: var(--ivory);
-    padding: 8px;
-    border: 1px solid var(--gold);
-  }
-  .qr-block span{
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: .75;
-  }
   .pin-icon{
     color: var(--gold);
-    margin: 2px 0;
+    margin: 18px 0 4px;
   }
 
   /* ---------- Wedding / Reception pages ---------- */
@@ -585,7 +576,8 @@
     font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    line-height: 1.7;
+    margin-bottom: 10px;
     opacity: .92;
   }
   .event-venue{
@@ -618,39 +610,47 @@
   .on-dark .btn-outline:hover{ background: var(--ivory); color: var(--dark-green); }
   .on-light .btn-outline:hover{ background: var(--olive); color: var(--ivory); }
 
-  /* ---------- Countdown page ---------- */
+  /* ---------- Countdown (integrated into hero page) ---------- */
+  .hero-countdown{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 14px;
+    margin-top: clamp(20px, 4vh, 34px);
+  }
   .countdown-grid{
     display:flex;
     justify-content:center;
-    gap: clamp(14px, 4vw, 44px);
-    flex-wrap: wrap;
+    align-items:flex-start;
+    gap: clamp(10px, 3.2vw, 28px);
+    flex-wrap: nowrap;
     margin-top: 12px;
   }
   .countdown-unit{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap: 10px;
-    min-width: 62px;
+    gap: 8px;
+    min-width: 46px;
   }
   .countdown-num{
     font-family: var(--serif);
     font-weight:500;
-    font-size: clamp(36px, 7.4vw, 56px);
+    font-size: clamp(24px, 5.6vw, 38px);
     line-height:1;
     font-variant-numeric: tabular-nums;
   }
   .countdown-label{
-    font-size: 10px;
-    letter-spacing: 0.24em;
+    font-size: 9px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
   }
   .countdown-sep{
     color: var(--gold);
     font-family: var(--serif);
-    font-size: clamp(24px, 5vw, 34px);
+    font-size: clamp(18px, 4vw, 26px);
     align-self:flex-start;
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   /* ---------- Gallery (no invented photographs) ---------- */
@@ -684,6 +684,7 @@
   .rsvp{
     color: var(--ivory);
     padding: var(--section-pad) var(--edge-pad) clamp(60px, 8vh, 90px);
+    text-align: center;
   }
   .rsvp .eyebrow{ color: var(--gold-soft); }
   .rsvp-heading{
@@ -704,11 +705,13 @@
   .rsvp-form{
     max-width: 460px;
     margin: 0 auto;
-    text-align:left;
+    text-align:center;
     display:flex;
     flex-direction:column;
+    align-items:center;
     gap: 24px;
   }
+  .field{ width:100%; }
   .field label{
     display:block;
     font-size: 10px;
@@ -716,6 +719,16 @@
     text-transform: uppercase;
     color: var(--gold-soft);
     margin-bottom: 10px;
+  }
+  .field label.attendance-heading{
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--gold-soft);
+    margin-bottom: 16px;
   }
   .field input[type="text"],
   .field input[type="number"],
@@ -737,8 +750,8 @@
     border-bottom-color: var(--gold);
   }
   .field textarea{ resize: vertical; min-height: 70px; }
-  .radio-row{ display:flex; flex-direction:column; gap: 16px; }
-  .radio-opt{ display:flex; align-items:center; gap: 10px; cursor:pointer; }
+  .radio-row{ display:flex; flex-direction:column; align-items:center; gap: 16px; }
+  .radio-opt{ display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer; }
   .radio-opt input{ accent-color: var(--gold); width:14px; height:14px; flex-shrink:0; }
   .radio-opt span{ font-size: 13px; letter-spacing: 0.08em; text-transform:uppercase; font-weight:300; }
   .rsvp-submit{
@@ -794,6 +807,10 @@
     display:block;
     margin: 4px 0;
   }
+  .footer-names .footer-amp-inline{
+    display:inline-block;
+    margin: 0 10px;
+  }
   .footer-love{
     font-family: var(--sans);
     font-weight:300;
@@ -819,8 +836,9 @@
   /* responsive tightening for very small screens */
   @media (max-width: 380px){
     :root{ --edge-pad: 20px; }
-    .countdown-grid{ gap: 12px; }
-    .countdown-unit{ min-width: 54px; }
+    .countdown-grid{ gap: 8px; }
+    .countdown-unit{ min-width: 40px; }
+    .countdown-num{ font-size: 22px; }
   }
 </style>
 </head>
@@ -842,7 +860,6 @@
   <a href="#family" data-target="family" aria-label="Family"></a>
   <a href="#wedding" data-target="wedding" aria-label="Wedding"></a>
   <a href="#reception" data-target="reception" aria-label="Reception"></a>
-  <a href="#countdown" data-target="countdown" aria-label="Countdown"></a>
   <a href="#gallery" data-target="gallery" aria-label="Gallery"></a>
   <a href="#rsvp" data-target="rsvp" aria-label="RSVP"></a>
   <a href="#finale" data-target="finale" aria-label="Closing"></a>
@@ -866,7 +883,7 @@
 <!-- =============== SECTION 2 — INVITATION =============== -->
 <section class="page bg-2 on-light" id="home">
   <div class="page-inner">
-    <p class="eyebrow reveal">With Great Joy</p>
+    <p class="eyebrow eyebrow-strong reveal">With Great Joy</p>
     <p class="page-lede reveal reveal-delay-1">We invite you to the wedding &amp; reception of our beloved</p>
     <div class="page-names">
       <span class="page-name reveal reveal-delay-2">Evin Thomas</span>
@@ -879,6 +896,31 @@
       <span class="eyebrow">Sunday</span>
     </div>
     <p class="page-time reveal reveal-delay-3">3:00 in the afternoon</p>
+
+    <div class="hero-countdown reveal reveal-delay-3">
+      <span class="eyebrow eyebrow-strong">Counting Down to the Celebration</span>
+      <div class="countdown-grid">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <span class="countdown-sep">·</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <span class="countdown-sep">·</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-mins">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <span class="countdown-sep">·</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-secs">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="scroll-hint">
     <span>Scroll</span>
@@ -912,8 +954,8 @@
         </div>
         <div class="branch-divider hairline-h"></div>
         <p class="family-address">
-          Naduvileparambil (H)<br>
-          Njaliyakuzhy PO<br>
+          Naduvileparambil House<br>
+          Vakathanam<br>
           Kottayam
         </p>
       </div>
@@ -940,23 +982,18 @@
 <section class="page bg-3 on-dark" id="wedding">
   <div class="page-inner">
     <div class="event-frame">
-      <p class="eyebrow reveal">The Wedding Ceremony</p>
-      <h2 class="page-title reveal reveal-delay-1">The Wedding</h2>
-      <p class="event-meta reveal reveal-delay-1">10 January 2027 &nbsp;·&nbsp; Sunday</p>
-      <p class="page-time reveal reveal-delay-1">3:00 PM</p>
-      <svg class="pin-icon reveal reveal-delay-2" width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true" style="margin: 0 auto 4px;">
+      <h2 class="page-title reveal">The Wedding Ceremony</h2>
+      <p class="event-meta reveal reveal-delay-1">10 January 2027<br>Sunday</p>
+      <p class="event-meta reveal reveal-delay-1">3:00 PM</p>
+      <svg class="pin-icon reveal reveal-delay-2" width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true">
         <path d="M8 0C3.6 0 0 3.6 0 8c0 5.6 8 12 8 12s8-6.4 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z" fill="currentColor"/>
       </svg>
-      <p class="event-venue reveal reveal-delay-2">St. George Jacobite<br>Syrian Church</p>
+      <p class="event-venue reveal reveal-delay-2">St. George Jacobite Syrian Church</p>
       <p class="event-location reveal reveal-delay-2">Puthupally, Kottayam</p>
       <a class="btn-outline reveal reveal-delay-3" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=St.+George+Jacobite+Syrian+Church+Puthupally+Kottayam">
         View Location
       </a>
-      <div class="qr-block reveal reveal-delay-3">
-        <img src="assets/venue-qr.png" alt="Scan for the wedding venue location on Google Maps" loading="lazy">
-        <span>Scan for location</span>
-      </div>
     </div>
   </div>
 </section>
@@ -965,44 +1002,17 @@
 <section class="page bg-3 on-dark" id="reception">
   <div class="page-inner">
     <div class="event-frame">
-      <p class="eyebrow reveal">Reception to Follow</p>
-      <h2 class="page-title reveal reveal-delay-1">Reception</h2>
+      <h2 class="page-title reveal">Reception to follow</h2>
       <p class="event-meta reveal reveal-delay-1">10 January 2027</p>
-      <p class="page-time reveal reveal-delay-1">6:30 PM</p>
-      <p class="event-venue reveal reveal-delay-2">St. Simons<br>Puthusserry Knanaya Church</p>
-      <p class="event-location reveal reveal-delay-2">Vakathanam, Kottayam</p>
+      <p class="event-meta reveal reveal-delay-1">6.30 PM onwards</p>
+      <svg class="pin-icon reveal reveal-delay-2" width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true">
+        <path d="M8 0C3.6 0 0 3.6 0 8c0 5.6 8 12 8 12s8-6.4 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z" fill="currentColor"/>
+      </svg>
+      <p class="event-venue reveal reveal-delay-2">St. Simons Puthusserry Knanaya Church Parish Hall</p>
       <a class="btn-outline reveal reveal-delay-3" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/search/?api=1&query=St.+Simons+Puthusserry+Knanaya+Church+Vakathanam+Kottayam">
+         href="https://www.google.com/maps/search/?api=1&query=St.+Simons+Puthusserry+Knanaya+Church+Parish+Hall+Vakathanam+Kottayam">
         View Location
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- =============== SECTION 6 — COUNTDOWN =============== -->
-<section class="page bg-2 on-light" id="countdown">
-  <div class="page-inner">
-    <span class="eyebrow reveal">Counting Down to the Celebration</span>
-    <div class="countdown-grid reveal reveal-delay-1">
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-days">00</span>
-        <span class="countdown-label">Days</span>
-      </div>
-      <span class="countdown-sep">·</span>
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-hours">00</span>
-        <span class="countdown-label">Hours</span>
-      </div>
-      <span class="countdown-sep">·</span>
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-mins">00</span>
-        <span class="countdown-label">Minutes</span>
-      </div>
-      <span class="countdown-sep">·</span>
-      <div class="countdown-unit">
-        <span class="countdown-num" id="cd-secs">00</span>
-        <span class="countdown-label">Seconds</span>
-      </div>
     </div>
   </div>
 </section>
@@ -1028,15 +1038,11 @@
       <input type="text" id="rsvpName" name="name" placeholder="Your full name" required>
     </div>
     <div class="field">
-      <label>Attendance</label>
+      <label class="attendance-heading">Will You Join Us?</label>
       <div class="radio-row">
         <label class="radio-opt"><input type="radio" name="attendance" value="joyfully-accept" checked><span>Joyfully Accept</span></label>
         <label class="radio-opt"><input type="radio" name="attendance" value="regretfully-decline"><span>Regretfully Decline</span></label>
       </div>
-    </div>
-    <div class="field">
-      <label for="rsvpGuests">Number of Guests</label>
-      <input type="number" id="rsvpGuests" name="guests" min="1" max="10" placeholder="1" value="1">
     </div>
     <div class="field">
       <label for="rsvpMessage">Message</label>
@@ -1058,12 +1064,9 @@
     <div class="hairline-h" style="max-width:180px; margin:0 auto 40px; opacity:.5;"></div>
     <p class="eyebrow reveal">With Love &amp; Joy</p>
     <div class="footer-names reveal reveal-delay-1">
-      Evin Thomas
-      <span class="footer-amp">&amp;</span>
-      Sneha Sara Santhosh
+      Evin <span class="footer-amp footer-amp-inline">&amp;</span> Sneha
     </div>
     <p class="footer-date reveal reveal-delay-2">10 January 2027</p>
-    <p class="footer-fine reveal reveal-delay-3">St. George Jacobite Syrian Church · Puthupally, Kottayam</p>
   </div>
 </footer>
 
