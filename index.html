@@ -78,9 +78,9 @@
 
   .eyebrow{
     font-family: var(--sans);
-    font-weight:400;
-    font-size: clamp(11px, 1.6vw, 13px);
-    letter-spacing: 0.32em;
+    font-weight:500;
+    font-size: clamp(12px, 1.8vw, 14.5px);
+    letter-spacing: 0.3em;
     text-transform:uppercase;
   }
 
@@ -94,7 +94,7 @@
      better readability/contrast (hero "With Great Joy", countdown heading) */
   .eyebrow-strong{
     font-weight:600;
-    font-size: clamp(12px, 1.9vw, 15px);
+    font-size: clamp(13px, 2vw, 16px);
   }
   .on-light .eyebrow-strong{ color: var(--dark-green); }
   .on-dark .eyebrow-strong{ color: var(--ivory); }
@@ -240,8 +240,8 @@
     transform: rotate(45deg);
   }
   .opening-eyebrow{
-    color: var(--eucalyptus);
-    opacity:.95;
+    color: var(--olive);
+    opacity:1;
   }
   .opening-names{
     font-family: var(--serif);
@@ -259,9 +259,9 @@
   }
   .opening-date{
     font-family: var(--sans);
-    font-weight:300;
-    font-size: 13px;
-    letter-spacing: 0.3em;
+    font-weight:500;
+    font-size: 14.5px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--olive);
     margin-top: -6px;
@@ -269,8 +269,9 @@
   .open-btn{
     margin-top: 18px;
     font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: 0.34em;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--ivory);
     background: var(--olive);
@@ -337,8 +338,13 @@
     /* Size/position against the viewport, not the section's own box, so
        sections whose content grows taller than one screen (e.g. Family on
        narrow phones) don't force the artwork to zoom in and crop the
-       corner botanicals/ornaments. */
+       corner botanicals/ornaments. Disabled on mobile below — iOS Safari
+       renders fixed-attachment backgrounds incorrectly (detached/duplicated)
+       once the dynamic toolbar changes the viewport height. */
     background-attachment: fixed;
+  }
+  @media (max-width: 900px){
+    .bg-1, .bg-2, .bg-3{ background-attachment: scroll; }
   }
   .on-light.bg-1, .on-light.bg-2, .on-light.bg-3{
     background-image:
@@ -357,7 +363,7 @@
   .on-dark .page-sub{ color: var(--gold-soft); }
 
   .on-light{ color: var(--dark-green); }
-  .on-light .eyebrow{ color: var(--eucalyptus); }
+  .on-light .eyebrow{ color: var(--olive); }
   .on-light .page-title{ color: var(--dark-green); }
   .on-light .page-sub{ color: var(--olive); }
 
@@ -501,9 +507,9 @@
     max-width: 280px;
   }
   .family-branch-label{
-    font-size: 11.5px;
+    font-size: 12.5px;
     font-weight: 600;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 16px;
@@ -526,9 +532,9 @@
   .branch-divider{ width: 120px; margin: 0 auto 24px; opacity:.85; }
   .family-address{
     font-family: var(--sans);
-    font-weight:400;
-    font-size: 13.5px;
-    letter-spacing: 0.12em;
+    font-weight:500;
+    font-size: 14.5px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     line-height:2;
   }
@@ -565,24 +571,24 @@
   .event-frame::after{ bottom:-40px; }
   .page-title{
     font-family: var(--serif);
-    font-weight:500;
+    font-weight:600;
     font-size: clamp(30px, 6vw, 46px);
     letter-spacing: 0.06em;
     margin: 4px 0 18px;
   }
   .event-meta{
     font-family: var(--sans);
-    font-weight:300;
-    font-size: 13px;
-    letter-spacing: 0.2em;
+    font-weight:500;
+    font-size: 14.5px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     line-height: 1.7;
     margin-bottom: 10px;
-    opacity: .92;
+    opacity: 1;
   }
   .event-venue{
     font-family: var(--serif);
-    font-weight:500;
+    font-weight:600;
     font-size: clamp(19px, 3vw, 23px);
     letter-spacing: 0.03em;
     line-height:1.5;
@@ -590,18 +596,19 @@
   }
   .event-location{
     font-family: var(--sans);
-    font-weight:300;
-    font-size: 12.5px;
-    letter-spacing: 0.16em;
+    font-weight:500;
+    font-size: 14px;
+    letter-spacing: 0.14em;
     text-transform:uppercase;
-    opacity:.85;
+    opacity:1;
     margin: 4px 0 30px;
   }
   .btn-outline{
     display:inline-block;
     font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.3em;
+    font-weight:500;
+    font-size: 12.5px;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
     padding: 14px 30px;
     border: 1px solid currentColor;
@@ -641,8 +648,9 @@
     font-variant-numeric: tabular-nums;
   }
   .countdown-label{
-    font-size: 9px;
-    letter-spacing: 0.22em;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
   }
   .countdown-sep{
@@ -658,7 +666,7 @@
     padding: var(--section-pad) var(--edge-pad);
     text-align:center;
   }
-  .gallery .eyebrow{ color: var(--eucalyptus); margin-bottom: 14px; display:block; }
+  .gallery .eyebrow{ color: var(--olive); margin-bottom: 14px; display:block; }
   .gallery h3{
     font-family: var(--serif);
     font-weight:500;
@@ -675,7 +683,8 @@
   .gallery-placeholder p{
     font-family: var(--serif);
     font-style: italic;
-    font-size: 17px;
+    font-weight: 500;
+    font-size: 18px;
     color: var(--olive);
     line-height:1.75;
   }
@@ -696,10 +705,11 @@
   .rsvp-sub{
     font-family: var(--serif);
     font-style: italic;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 17px;
     max-width: 380px;
     margin: 0 auto 40px;
-    opacity: .9;
+    opacity: .96;
     line-height:1.7;
   }
   .rsvp-form{
@@ -714,8 +724,9 @@
   .field{ width:100%; }
   .field label{
     display:block;
-    font-size: 10px;
-    letter-spacing: 0.24em;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold-soft);
     margin-bottom: 10px;
@@ -723,8 +734,8 @@
   .field label.attendance-heading{
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 17px;
     letter-spacing: 0.04em;
     text-transform: none;
     color: var(--gold-soft);
@@ -739,8 +750,8 @@
     border-bottom: 1px solid rgba(245,241,231,.4);
     color: var(--ivory);
     font-family: var(--sans);
-    font-weight:300;
-    font-size: 15px;
+    font-weight:400;
+    font-size: 16px;
     padding: 8px 2px;
     transition: border-color .3s ease;
   }
@@ -753,7 +764,7 @@
   .radio-row{ display:flex; flex-direction:column; align-items:center; gap: 16px; }
   .radio-opt{ display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer; }
   .radio-opt input{ accent-color: var(--gold); width:14px; height:14px; flex-shrink:0; }
-  .radio-opt span{ font-size: 13px; letter-spacing: 0.08em; text-transform:uppercase; font-weight:300; }
+  .radio-opt span{ font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500; }
   .rsvp-submit{
     margin-top: 6px;
     align-self: center;
@@ -771,9 +782,10 @@
   .rsvp-submit:hover{ background: transparent; color: var(--ivory); }
   .rsvp-note{
     text-align:center;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: rgba(245,241,231,.55);
+    font-size: 12.5px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: rgba(245,241,231,.78);
     margin-top: 4px;
   }
   .rsvp-success{
@@ -786,10 +798,11 @@
   .rsvp-success p:first-child{
     font-family: var(--serif);
     font-style: italic;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 21px;
     margin-bottom: 8px;
   }
-  .rsvp-success p:last-child{ font-size: 12px; letter-spacing: 0.1em; opacity:.8; }
+  .rsvp-success p:last-child{ font-size: 13.5px; letter-spacing: 0.08em; opacity:.9; }
 
   /* ---------- Footer / final page (Section 7) ---------- */
   .footer.page{ min-height: 78svh; }
@@ -823,8 +836,9 @@
   .footer-date{
     font-family: var(--serif);
     font-style: italic;
-    font-size: 17px;
-    opacity: .85;
+    font-weight: 500;
+    font-size: 19px;
+    opacity: .96;
   }
   .footer-fine{
     margin-top: 44px;
