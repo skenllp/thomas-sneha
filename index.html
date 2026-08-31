@@ -42,6 +42,7 @@
     --dark-green: #293322;
     --gold: #C7A45A;
     --gold-soft: #D9C08F;
+    --sage-mid: #7D8963;
     --blush: #D8C6BC;
     --ink: #2C2A22;
 
@@ -190,10 +191,11 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background: var(--ivory-2);
-    background-image: url('assets/bg-light-arch.webp');
+    background: var(--sage-mid);
+    background-image: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(245,241,231,.55) 0%, rgba(245,241,231,.2) 55%, rgba(245,241,231,0) 80%), url('assets/bg-invite-1.webp');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     transition: opacity 1.3s ease, visibility 1.3s ease;
   }
   #opening.opened{
@@ -309,10 +311,36 @@
     gap: 18px;
   }
 
-  .bg-dark-arch{ background-image: url('assets/bg-dark-arch.webp'); background-color: var(--dark-green); }
-  .bg-light-arch{ background-image: url('assets/bg-light-arch.webp'); background-color: var(--ivory-2); }
-  .bg-light-botanical{ background-image: url('assets/bg-light-botanical.webp'); background-color: var(--ivory-2); }
-  .bg-dark-botanical{ background-image: url('assets/bg-dark-botanical.webp'); background-color: var(--dark-green); }
+  /* Three-background invitation-suite system.
+     Each section picks one artwork (bg-1 / bg-2 / bg-3) and pairs it with
+     its existing on-light / on-dark theme; a soft centered scrim (matching
+     the theme's own palette) keeps the central text readable while leaving
+     the artwork's corner botanicals / borders visible. */
+  .bg-1{ --bg-img: url('assets/bg-invite-1.webp'); }
+  .bg-2{ --bg-img: url('assets/bg-invite-2.webp'); }
+  .bg-3{ --bg-img: url('assets/bg-invite-3.webp'); }
+
+  .bg-1, .bg-2, .bg-3{
+    background-color: var(--sage-mid);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Size/position against the viewport, not the section's own box, so
+       sections whose content grows taller than one screen (e.g. Family on
+       narrow phones) don't force the artwork to zoom in and crop the
+       corner botanicals/ornaments. */
+    background-attachment: fixed;
+  }
+  .on-light.bg-1, .on-light.bg-2, .on-light.bg-3{
+    background-image:
+      radial-gradient(ellipse 75% 65% at 50% 50%, rgba(245,241,231,.55) 0%, rgba(245,241,231,.2) 55%, rgba(245,241,231,0) 80%),
+      var(--bg-img);
+  }
+  .on-dark.bg-1, .on-dark.bg-2, .on-dark.bg-3{
+    background-image:
+      radial-gradient(ellipse 75% 65% at 50% 50%, rgba(41,51,34,.55) 0%, rgba(41,51,34,.22) 55%, rgba(41,51,34,0) 80%),
+      var(--bg-img);
+  }
 
   .on-dark{ color: var(--ivory); }
   .on-dark .eyebrow{ color: var(--gold-soft); }
@@ -627,7 +655,6 @@
 
   /* ---------- Gallery (no invented photographs) ---------- */
   .gallery{
-    background: var(--ivory-2);
     padding: var(--section-pad) var(--edge-pad);
     text-align:center;
   }
@@ -653,9 +680,8 @@
     line-height:1.75;
   }
 
-  /* ---------- RSVP (no image — same olive/ivory/gold language) ---------- */
+  /* ---------- RSVP ---------- */
   .rsvp{
-    background: var(--dark-green);
     color: var(--ivory);
     padding: var(--section-pad) var(--edge-pad) clamp(60px, 8vh, 90px);
   }
@@ -838,7 +864,7 @@
 </div>
 
 <!-- =============== SECTION 2 — INVITATION =============== -->
-<section class="page bg-light-botanical on-light" id="home">
+<section class="page bg-2 on-light" id="home">
   <div class="page-inner">
     <p class="eyebrow reveal">With Great Joy</p>
     <p class="page-lede reveal reveal-delay-1">We invite you to the wedding &amp; reception of our beloved</p>
@@ -861,7 +887,7 @@
 </section>
 
 <!-- =============== SECTION 3 — FAMILY =============== -->
-<section class="page bg-light-botanical on-light" id="family">
+<section class="page bg-2 on-light" id="family">
   <div class="page-inner" style="max-width:760px;">
     <!-- <p class="verse reveal">
       &ldquo;And now these three remain: faith, hope, and love.<br>
@@ -911,7 +937,7 @@
 </section>
 
 <!-- =============== SECTION 4 — WEDDING =============== -->
-<section class="page bg-dark-botanical on-dark" id="wedding">
+<section class="page bg-3 on-dark" id="wedding">
   <div class="page-inner">
     <div class="event-frame">
       <p class="eyebrow reveal">The Wedding Ceremony</p>
@@ -936,7 +962,7 @@
 </section>
 
 <!-- =============== SECTION 5 — RECEPTION =============== -->
-<section class="page bg-dark-botanical on-dark" id="reception">
+<section class="page bg-3 on-dark" id="reception">
   <div class="page-inner">
     <div class="event-frame">
       <p class="eyebrow reveal">Reception to Follow</p>
@@ -954,7 +980,7 @@
 </section>
 
 <!-- =============== SECTION 6 — COUNTDOWN =============== -->
-<section class="page bg-light-botanical on-light" id="countdown">
+<section class="page bg-2 on-light" id="countdown">
   <div class="page-inner">
     <span class="eyebrow reveal">Counting Down to the Celebration</span>
     <div class="countdown-grid reveal reveal-delay-1">
@@ -982,7 +1008,7 @@
 </section>
 
 <!-- =============== GALLERY (kept, no invented photographs) =============== -->
-<section class="gallery" id="gallery">
+<section class="gallery bg-3 on-light" id="gallery">
   <span class="eyebrow reveal">A Few Moments</span>
   <h3 class="reveal reveal-delay-1">Gallery</h3>
   <div class="gallery-placeholder reveal reveal-delay-2">
@@ -991,7 +1017,7 @@
 </section>
 
 <!-- =============== RSVP (no background image, same visual language) =============== -->
-<section class="rsvp" id="rsvp">
+<section class="rsvp bg-3 on-dark" id="rsvp">
   <span class="eyebrow reveal">Kindly Respond</span>
   <h2 class="rsvp-heading reveal reveal-delay-1">RSVP</h2>
   <p class="rsvp-sub reveal reveal-delay-1">We would be delighted to celebrate this special day with you.</p>
@@ -1027,7 +1053,7 @@
 </section>
 
 <!-- =============== SECTION 7 — FINAL / FOOTER =============== -->
-<footer class="page footer bg-dark-arch on-dark" id="finale">
+<footer class="page footer bg-1 on-dark" id="finale">
   <div class="page-inner">
     <div class="hairline-h" style="max-width:180px; margin:0 auto 40px; opacity:.5;"></div>
     <p class="eyebrow reveal">With Love &amp; Joy</p>
