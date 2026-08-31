@@ -1179,13 +1179,47 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // ---------- RSVP (client-side confirmation only) ----------
+  // ---------- RSVP (submits to Google Sheet + shows confirmation) ----------
+  // Paste the Web App URL you get after deploying the Apps Script (see
+  // rsvp-google-sheet-setup.gs) between the quotes below.
+  const RSVP_SHEET_URL = 'https://script.google.com/macros/s/AKfycbykdr4FP-gCPBKwXTvZ-pR_d5Z8Gei5m_LqJSMFxxopa4TdlwCw0KQvfP0ih6mfttQN_Q/exec';
+
   const rsvpForm = document.getElementById('rsvpForm');
   const rsvpSuccess = document.getElementById('rsvpSuccess');
+  const rsvpSubmitBtn = rsvpForm.querySelector('.rsvp-submit');
+
   rsvpForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    rsvpForm.style.display = 'none';
-    rsvpSuccess.classList.add('show');
+
+    const showConfirmation = () => {
+      rsvpForm.style.display = 'none';
+      rsvpSuccess.classList.add('show');
+    };
+
+    if (!RSVP_SHEET_URL || RSVP_SHEET_URL.indexOf('PASTE_YOUR') === 0) {
+      // Sheet not configured yet — keep the invitation working with the
+      // original client-side-only confirmation.
+      showConfirmation();
+      return;
+    }
+
+    const originalLabel = rsvpSubmitBtn.textContent;
+    rsvpSubmitBtn.disabled = true;
+    rsvpSubmitBtn.textContent = 'Sending…';
+
+    fetch(RSVP_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script web apps don't return CORS headers;
+                        // no-cors still delivers the POST, we just can't
+                        // read the response back.
+      body: new FormData(rsvpForm)
+    })
+      .catch(() => { /* network hiccup — still confirm to the guest */ })
+      .finally(() => {
+        rsvpSubmitBtn.disabled = false;
+        rsvpSubmitBtn.textContent = originalLabel;
+        showConfirmation();
+      });
   });
 </script>
 </body>
