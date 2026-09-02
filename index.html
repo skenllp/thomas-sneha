@@ -327,7 +327,7 @@
      the theme's own palette) keeps the central text readable while leaving
      the artwork's corner botanicals / borders visible. */
   .bg-1{ --bg-img: url('assets/bg-invite-1.webp'); }
-  .bg-2{ --bg-img: url('assets/bg-invite-2.webp'); }
+  .bg-2{ --bg-img: url('assets/bg-invite-2.png'); }
   .bg-3{ --bg-img: url('assets/bg-invite-3.webp'); }
 
   .bg-1, .bg-2, .bg-3{
@@ -511,7 +511,7 @@
     font-weight: 600;
     letter-spacing: 0.26em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--eucalyptus);
     margin-bottom: 16px;
     display:block;
   }
@@ -533,7 +533,7 @@
   .family-address{
     font-family: var(--sans);
     font-weight:500;
-    font-size: 14.5px;
+    font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     line-height:2;
@@ -804,6 +804,30 @@
   }
   .rsvp-success p:last-child{ font-size: 13.5px; letter-spacing: 0.08em; opacity:.9; }
 
+  /* ---------- RSVP within unified section styling ---------- */
+  .rsvp-section .field input[type="text"],
+  .rsvp-section .field input[type="number"],
+  .rsvp-section .field textarea{
+    width:100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(245,241,231,.4);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-weight:400;
+    font-size: 16px;
+    padding: 8px 2px;
+    transition: border-color .3s ease;
+  }
+  .rsvp-section .field input::placeholder, 
+  .rsvp-section .field textarea::placeholder{ color: rgba(245,241,231,.45); }
+  .rsvp-section .field input:focus, 
+  .rsvp-section .field textarea:focus{
+    outline:none;
+    border-bottom-color: var(--gold);
+  }
+  .rsvp-section .rsvp-submit:hover{ background: transparent; color: var(--ivory); }
+
   /* ---------- Footer / final page (Section 7) ---------- */
   .footer.page{ min-height: 78svh; }
   .footer-names{
@@ -872,9 +896,7 @@
 <nav class="side-nav" id="sideNav" aria-label="Section navigation">
   <a href="#home" data-target="home" aria-label="Invitation"></a>
   <a href="#family" data-target="family" aria-label="Family"></a>
-  <a href="#wedding" data-target="wedding" aria-label="Wedding"></a>
-  <a href="#reception" data-target="reception" aria-label="Reception"></a>
-  <a href="#gallery" data-target="gallery" aria-label="Gallery"></a>
+  <a href="#wedding" data-target="wedding" aria-label="Wedding & Reception"></a>
   <a href="#rsvp" data-target="rsvp" aria-label="RSVP"></a>
   <a href="#finale" data-target="finale" aria-label="Closing"></a>
 </nav>
@@ -992,9 +1014,11 @@
   </div>
 </section>
 
-<!-- =============== SECTION 4 — WEDDING =============== -->
+<!-- =============== SECTION 4 — WEDDING, RECEPTION & RSVP =============== -->
 <section class="page bg-3 on-dark" id="wedding">
-  <div class="page-inner">
+  <div class="page-inner" style="max-width: 800px; gap: clamp(40px, 8vh, 80px);">
+    
+    <!-- Wedding Ceremony -->
     <div class="event-frame">
       <h2 class="page-title reveal">The Wedding Ceremony</h2>
       <p class="event-meta reveal reveal-delay-1">10 January 2027<br>Sunday</p>
@@ -1009,13 +1033,9 @@
         View Location
       </a>
     </div>
-  </div>
-</section>
 
-<!-- =============== SECTION 5 — RECEPTION =============== -->
-<section class="page bg-3 on-dark" id="reception">
-  <div class="page-inner">
-    <div class="event-frame">
+    <!-- Reception -->
+    <div class="event-frame" id="reception">
       <h2 class="page-title reveal">Reception to follow</h2>
       <p class="event-meta reveal reveal-delay-1">10 January 2027</p>
       <p class="event-meta reveal reveal-delay-1">6.30 PM onwards</p>
@@ -1028,47 +1048,39 @@
         View Location
       </a>
     </div>
-  </div>
-</section>
 
-<!-- =============== GALLERY (kept, no invented photographs) =============== -->
-<!-- <section class="gallery bg-3 on-light" id="gallery">
-  <span class="eyebrow reveal">A Few Moments</span>
-  <h3 class="reveal reveal-delay-1">Gallery</h3>
-  <div class="gallery-placeholder reveal reveal-delay-2">
-    <p>Photographs from our celebration will be added here soon.</p>
-  </div>
-</section> -->
+    <!-- RSVP -->
+    <div class="rsvp-section" id="rsvp" style="margin-top: clamp(20px, 4vh, 40px);">
+      <span class="eyebrow reveal">Kindly Respond</span>
+      <h2 class="page-title reveal reveal-delay-1" style="margin: 16px 0 14px;">RSVP</h2>
+      <p class="rsvp-sub reveal reveal-delay-1" style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 17px; max-width: 380px; margin: 0 auto 40px; opacity: .96; line-height:1.7;">We would be delighted to celebrate this special day with you.</p>
 
-<!-- =============== RSVP (no background image, same visual language) =============== -->
-<section class="rsvp bg-3 on-dark" id="rsvp">
-  <span class="eyebrow reveal">Kindly Respond</span>
-  <h2 class="rsvp-heading reveal reveal-delay-1">RSVP</h2>
-  <p class="rsvp-sub reveal reveal-delay-1">We would be delighted to celebrate this special day with you.</p>
+      <form class="rsvp-form reveal reveal-delay-2" id="rsvpForm" style="max-width: 460px; margin: 0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap: 24px;">
+        <div class="field" style="width:100%;">
+          <label for="rsvpName" style="display:block; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: 10px;">Name</label>
+          <input type="text" id="rsvpName" name="name" placeholder="Your full name" required style="width:100%; background: transparent; border: none; border-bottom: 1px solid rgba(245,241,231,.4); color: var(--ivory); font-family: var(--sans); font-weight:400; font-size: 16px; padding: 8px 2px; transition: border-color .3s ease;">
+        </div>
+        <div class="field" style="width:100%;">
+          <label class="attendance-heading" style="font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 17px; letter-spacing: 0.04em; text-transform: none; color: var(--gold-soft); margin-bottom: 16px;">Will You Join Us?</label>
+          <div class="radio-row" style="display:flex; flex-direction:column; align-items:center; gap: 16px;">
+            <label class="radio-opt" style="display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer;"><input type="radio" name="attendance" value="joyfully-accept" checked style="accent-color: var(--gold); width:14px; height:14px; flex-shrink:0;"><span style="font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500;">Joyfully Accept</span></label>
+            <label class="radio-opt" style="display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer;"><input type="radio" name="attendance" value="regretfully-decline" style="accent-color: var(--gold); width:14px; height:14px; flex-shrink:0;"><span style="font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500;">Regretfully Decline</span></label>
+          </div>
+        </div>
+        <div class="field" style="width:100%;">
+          <label for="rsvpMessage" style="display:block; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: 10px;">Message</label>
+          <textarea id="rsvpMessage" name="message" placeholder="A note for the couple (optional)" style="width:100%; background: transparent; border: none; border-bottom: 1px solid rgba(245,241,231,.4); color: var(--ivory); font-family: var(--sans); font-weight:400; font-size: 16px; padding: 8px 2px; transition: border-color .3s ease; resize: vertical; min-height: 70px;"></textarea>
+        </div>
+        <button type="submit" class="rsvp-submit" style="margin-top: 6px; align-self: center; font-family: var(--sans); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--dark-green); background: var(--ivory); border: 1px solid var(--ivory); padding: 16px 44px; cursor:pointer; transition: background .4s ease, color .4s ease;">Confirm RSVP</button>
+        <p class="rsvp-note" style="text-align:center; font-size: 12.5px; font-weight: 400; letter-spacing: 0.06em; color: rgba(245,241,231,.78); margin-top: 4px;">Kindly respond by 20 December 2026</p>
+      </form>
 
-  <form class="rsvp-form reveal reveal-delay-2" id="rsvpForm">
-    <div class="field">
-      <label for="rsvpName">Name</label>
-      <input type="text" id="rsvpName" name="name" placeholder="Your full name" required>
-    </div>
-    <div class="field">
-      <label class="attendance-heading">Will You Join Us?</label>
-      <div class="radio-row">
-        <label class="radio-opt"><input type="radio" name="attendance" value="joyfully-accept" checked><span>Joyfully Accept</span></label>
-        <label class="radio-opt"><input type="radio" name="attendance" value="regretfully-decline"><span>Regretfully Decline</span></label>
+      <div class="rsvp-success" id="rsvpSuccess" style="display:none; text-align:center; padding: 30px 20px; border: 1px solid var(--gold);">
+        <p style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 21px; margin-bottom: 8px;">Thank you for your response.</p>
+        <p style="font-size: 13.5px; letter-spacing: 0.08em; opacity:.9;">We can't wait to celebrate with you.</p>
       </div>
     </div>
-    <div class="field">
-      <label for="rsvpMessage">Message</label>
-      <textarea id="rsvpMessage" name="message" placeholder="A note for the couple (optional)"></textarea>
-    </div>
-    <button type="submit" class="rsvp-submit">Confirm RSVP</button>
-    <p class="rsvp-note">Kindly respond by 20 December 2026</p>
-  </form>
 
-  <div class="rsvp-success" id="rsvpSuccess">
-    <p>Thank you for your response.</p>
-    <p>We can't wait to celebrate with you.</p>
   </div>
 </section>
 
