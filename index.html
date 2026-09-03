@@ -414,7 +414,7 @@
      so the illustration's edge disappears into the page instead of
      sitting in a visible box. */
   .bg-white-anthurium, .bg-red-a, .bg-red-b{ background-color: #FEFEFE; }
-  .bg-ivory-botanical, .bg-red-rsvp{ background-color: #FFFBF7; }
+  .bg-ivory-botanical{ background-color: #FFFBF7; }
 
   /* ---- Background A · White Anthurium — hero, countdown, closing ---- */
   .bg-white-anthurium::before{
@@ -451,21 +451,6 @@
     width: min(20vw, 260px); height: 55%;
   }
 
-  /* ---- Background D · Red Anthurium RSVP ---- */
-  .bg-red-rsvp::before{
-    content: '';
-    position: absolute;
-    background-image: url('assets/bg-red-anthurium-a.webp');
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    top: 10%; bottom: 10%; right: 20%; left: 20%;
-    width: 60%;
-    height: 80%;
-    z-index: 1;
-    opacity: 0.8;
-  }
-
   @media (max-width: 780px){
     .bg-white-anthurium::before{
       top: 0; bottom: auto; left: auto; right: 0;
@@ -487,12 +472,6 @@
       top:0; bottom:auto; left:0; right:auto;
       width: 40vw; height: 28vh;
       background-position: top left;
-    }
-    .bg-red-rsvp::before{
-      top: 15%; bottom: 15%; right: 10%; left: 10%;
-      width: 80%; height: 70%;
-      background-position: center center;
-      opacity: 0.9;
     }
     .page{ padding: clamp(64px, 10vh, 100px) var(--edge-pad); }
     .page-inner{ gap:16px; }
@@ -1184,7 +1163,7 @@
 </section>
 
 <!-- =============== SECTION 6 — RSVP =============== -->
-<section class="page bg-red-rsvp" id="rsvp">
+<section class="page bg-ivory-botanical" id="rsvp">
   <div class="page-inner rsvp-section" style="max-width:460px;">
     <span class="eyebrow reveal">Kindly Respond</span>
     <h2 class="rsvp-heading reveal reveal-delay-1">RSVP</h2>
