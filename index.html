@@ -427,8 +427,10 @@
   /* ---- Background B1 · Red Anthurium — wedding ceremony ---- */
   .bg-red-a::before{
     background-image: url('assets/bg-red-anthurium-b.webp');
-    background-position: left bottom;
+    background-position: left top;
     background-size: contain;
+    z-index: 3;
+  }
     top:auto; bottom:0; left:0; right:auto;
     width: min(26vw, 360px); height: 60%;
   }
@@ -459,9 +461,11 @@
       background-size: contain;
     }
     .bg-red-a::before{
-      top:auto; bottom:0; left:0; right:auto;
-      width: 44vw; height: 30vh;
-      background-position: bottom left;
+      top: 0; bottom: auto; left: 0; right: auto;
+      width: 60vw; height: 50vh;
+      background-position: left top;
+      z-index: 3;
+    }
     }
     .bg-red-b::before{
       top:auto; bottom:0; right:0; left:auto;
