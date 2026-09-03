@@ -214,8 +214,8 @@
   .opening-flower{
     position:absolute;
     top:0; right:0; bottom:0;
-    width: min(46vw, 560px);
-    background-image: url('assets/bg-white-anthurium-new.png');
+    width: min(60vw, 720px);
+    background-image: url('assets/ChatGPT Image Sep 3, 2026, 04_01_47 PM.png');
     background-repeat: no-repeat;
     background-position: right center;
     background-size: cover;
@@ -331,9 +331,9 @@
 
   @media (max-width: 720px){
     .opening-flower{
-      width: 62vw;
-      background-position: top right;
-      background-size: contain;
+      width: 95vw;
+      background-position: center right;
+      background-size: cover;
       background-color: #FEFEFE;
     }
     .opening-grid{
@@ -358,8 +358,12 @@
     }
   }
   @media (max-width: 380px){
-    .opening-flower{ width: 58vw; }
-    .opening-content{ max-width: 60vw; padding-top: 12vh; }
+    .opening-flower{ 
+      width: 100vw; 
+      left: 0;
+      background-position: center;
+    }
+    .opening-content{ max-width: 55vw; padding-top: 8vh; }
     .opening-names{ font-size: clamp(24px, 8vw, 32px); }
   }
 
@@ -412,7 +416,7 @@
 
   /* ---- Background A · White Anthurium — hero, countdown, closing ---- */
   .bg-white-anthurium::before{
-    background-image: url('assets/bg-white-anthurium.webp');
+    background-image: url('assets/ChatGPT Image Sep 3, 2026, 04_01_47 PM.png');
     background-position: right center;
     background-size: contain;
     top:auto; bottom:0; left:auto; right:0;
@@ -448,8 +452,9 @@
   @media (max-width: 780px){
     .bg-white-anthurium::before{
       top:auto; bottom:0; left:auto; right:0;
-      width: 46vw; height: 34vh;
-      background-position: bottom right;
+      width: 95vw; height: 60vh;
+      background-position: center right;
+      background-size: cover;
     }
     .bg-red-a::before{
       top:auto; bottom:0; left:0; right:auto;
@@ -468,6 +473,17 @@
     }
     .page{ padding: clamp(64px, 10vh, 100px) var(--edge-pad); }
     .page-inner{ gap:16px; }
+  }
+
+  @media (max-width: 380px){
+    .bg-white-anthurium::before{
+      width: 100vw; 
+      left: 0;
+      right: auto;
+      height: 70vh;
+      background-position: center;
+      background-size: cover;
+    }
   }
 
   .page-lede{
