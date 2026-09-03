@@ -34,17 +34,19 @@
 
 <style>
   :root{
-    --ivory: #F5F1E7;
-    --ivory-2: #EFE9DA;
+    --ivory: #FBF9F4;
+    --ivory-2: #F3EFE4;
+    --paper: #FAF7F0;
     --sage: #B8C1A5;
-    --eucalyptus: #89977C;
+    --eucalyptus: #6E7C5C;
     --olive: #3F4930;
     --dark-green: #293322;
-    --gold: #C7A45A;
-    --gold-soft: #D9C08F;
-    --sage-mid: #7D8963;
+    --gold: #B08A4E;
+    --gold-soft: #A9895A;
+    --deep-red: #9E2B25;
     --blush: #D8C6BC;
     --ink: #2C2A22;
+    --ink-soft: #514E40;
 
     --serif: 'Cormorant Garamond', serif;
     --sans: 'Jost', sans-serif;
@@ -96,8 +98,7 @@
     font-weight:600;
     font-size: clamp(13px, 2vw, 16px);
   }
-  .on-light .eyebrow-strong{ color: var(--dark-green); }
-  .on-dark .eyebrow-strong{ color: var(--ivory); }
+  .eyebrow-strong{ color: var(--dark-green); }
 
   .script-accent{
     font-family: var(--script);
@@ -192,19 +193,17 @@
     50%{ height: 16px; }
   }
 
-  /* ================= OPENING / COVER (Section 1 — Hero) ================= */
+  /* ================= OPENING / COVER (Section 1 — Hero) =================
+     Direct digital recreation of the printed invitation card: clean ivory
+     canvas, anthurium artwork held to the right, all copy left/center in
+     the untouched negative space. No overlay/gradient sits on the artwork
+     itself — only the text column has room to breathe. */
   #opening{
     position: fixed;
     inset: 0;
     z-index: 999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background: var(--sage-mid);
-    background-image: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(245,241,231,.55) 0%, rgba(245,241,231,.2) 55%, rgba(245,241,231,0) 80%), url('assets/bg-invite-1.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: #FEFEFE;
+    overflow:hidden;
     transition: opacity 1.3s ease, visibility 1.3s ease;
   }
   #opening.opened{
@@ -212,15 +211,32 @@
     visibility:hidden;
     pointer-events:none;
   }
-  .opening-content{
+  .opening-flower{
+    position:absolute;
+    top:0; right:0; bottom:0;
+    width: min(46vw, 560px);
+    background-image: url('assets/bg-white-anthurium-new.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
+    z-index:1;
+  }
+  .opening-grid{
     position:relative;
     z-index:2;
-    text-align:center;
-    padding: 32px;
+    min-height: 100%;
+    min-height: 100svh;
+    display:flex;
+    align-items:center;
+    padding: 40px clamp(28px, 6vw, 64px);
+  }
+  .opening-content{
+    max-width: 480px;
+    text-align:left;
     display:flex;
     flex-direction:column;
-    align-items:center;
-    gap: 22px;
+    align-items:flex-start;
+    gap: 16px;
     animation: openingFadeIn 1.6s ease both;
   }
   @keyframes openingFadeIn{
@@ -228,14 +244,15 @@
     to{ opacity:1; transform: translateY(0); }
   }
   .opening-mark{
-    width: 34px; height:34px;
+    width: 30px; height:30px;
     border: 1px solid var(--gold);
     transform: rotate(45deg);
     display:flex; align-items:center; justify-content:center;
+    margin-bottom: 6px;
   }
   .opening-mark::after{
     content:'';
-    width:8px; height:8px;
+    width:7px; height:7px;
     background: var(--gold);
     transform: rotate(45deg);
   }
@@ -245,46 +262,63 @@
   }
   .opening-names{
     font-family: var(--serif);
-    font-size: clamp(30px, 7vw, 46px);
-    color: var(--dark-green);
-    letter-spacing: 0.04em;
-    line-height:1.25;
+    font-weight: 600;
+    font-size: clamp(34px, 5.6vw, 54px);
+    color: var(--ink);
+    letter-spacing: 0.015em;
+    line-height:1.18;
   }
   .opening-names .amp{
     font-family: var(--script);
-    font-size: 1.5em;
+    font-weight:400;
+    font-size: 0.72em;
     display:block;
-    color: var(--gold);
-    margin: 2px 0;
+    color: var(--ink-soft);
+    margin: 4px 0;
+  }
+  .opening-invite-line{
+    font-family: var(--sans);
+    font-weight:600;
+    font-size: clamp(12px, 1.7vw, 13.5px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 6px;
   }
   .opening-date{
     font-family: var(--sans);
     font-weight:500;
-    font-size: 14.5px;
-    letter-spacing: 0.28em;
+    font-size: 13px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--olive);
-    margin-top: -6px;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+  .opening-reception{
+    font-family: var(--script);
+    font-size: clamp(20px, 3vw, 26px);
+    color: var(--ink-soft);
+    margin-top: 4px;
   }
   .open-btn{
-    margin-top: 18px;
+    margin-top: 22px;
     font-family: var(--sans);
     font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.32em;
+    font-size: 12.5px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--ivory);
-    background: var(--olive);
-    border: 1px solid var(--olive);
-    padding: 16px 40px;
+    background: var(--dark-green);
+    border: 1px solid var(--dark-green);
+    padding: 15px 38px;
     cursor:pointer;
     position:relative;
     transition: background .5s ease, color .5s ease, letter-spacing .5s ease;
   }
   .open-btn:hover{
     background: transparent;
-    color: var(--olive);
-    letter-spacing: 0.4em;
+    color: var(--dark-green);
+    letter-spacing: 0.38em;
   }
   .open-btn:focus-visible{ outline: 2px solid var(--gold); outline-offset:4px; }
 
@@ -295,9 +329,47 @@
     to{ opacity:0; transform: translateY(-24px) scale(.98); }
   }
 
-  /* ================= FULL-BLEED INVITATION PAGES ================= */
-  /* Every major section uses one supplied floral artwork as its entire
-     background — a sequence of printed invitation pages, not image cards. */
+  @media (max-width: 720px){
+    .opening-flower{
+      width: 62vw;
+      background-position: top right;
+      background-size: contain;
+      background-color: #FEFEFE;
+    }
+    .opening-grid{
+      align-items:flex-start;
+      padding: 32px 20px 40px;
+      min-height: 100svh;
+    }
+    .opening-content{
+      max-width: 62vw;
+      padding-top: 16vh;
+      gap: 10px;
+    }
+    .opening-names{ font-size: clamp(28px, 8.5vw, 40px); }
+    .opening-date{ font-size: 11.5px; line-height: 1.75; }
+    .opening-invite-line{ font-size: 11px; }
+    .opening-reception{ margin-bottom: 4px; }
+    .open-btn{
+      margin-top: 22px;
+      margin-bottom: 24px;
+      padding: 13px 26px;
+      font-size: 11px;
+    }
+  }
+  @media (max-width: 380px){
+    .opening-flower{ width: 58vw; }
+    .opening-content{ max-width: 60vw; padding-top: 12vh; }
+    .opening-names{ font-size: clamp(24px, 8vw, 32px); }
+  }
+
+  /* ================= INVITATION-SUITE PAGES ================= */
+  /* Every section is a clean paper canvas (matching the supplied artwork's
+     own ivory/white ground) with the floral illustration held to one edge
+     as decorative framing — never a full-bleed photo behind the copy.
+     This keeps every section reading as "another page from the same
+     printed invitation" while guaranteeing the artwork never sits under
+     text, buttons or the RSVP form. */
   .page{
     position:relative;
     min-height: 100svh;
@@ -307,8 +379,15 @@
     text-align:center;
     overflow:hidden;
     padding: clamp(90px, 14vh, 140px) var(--edge-pad);
-    background-size: cover;
-    background-position: center;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .page::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
     background-repeat: no-repeat;
   }
   .page-inner{
@@ -321,51 +400,75 @@
     gap: 18px;
   }
 
-  /* Three-background invitation-suite system.
-     Each section picks one artwork (bg-1 / bg-2 / bg-3) and pairs it with
-     its existing on-light / on-dark theme; a soft centered scrim (matching
-     the theme's own palette) keeps the central text readable while leaving
-     the artwork's corner botanicals / borders visible. */
-  .bg-1{ --bg-img: url('assets/bg-invite-1.webp'); }
-  .bg-2{ --bg-img: url('assets/bg-invite-2.png'); }
-  .bg-3{ --bg-img: url('assets/bg-invite-3.webp'); }
+  .eyebrow{ color: var(--olive); }
+  .page-title{ color: var(--dark-green); }
+  .page-sub{ color: var(--olive); }
 
-  .bg-1, .bg-2, .bg-3{
-    background-color: var(--sage-mid);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Size/position against the viewport, not the section's own box, so
-       sections whose content grows taller than one screen (e.g. Family on
-       narrow phones) don't force the artwork to zoom in and crop the
-       corner botanicals/ornaments. Disabled on mobile below — iOS Safari
-       renders fixed-attachment backgrounds incorrectly (detached/duplicated)
-       once the dynamic toolbar changes the viewport height. */
-    background-attachment: fixed;
+  /* Each canvas colour matches its own artwork's baked-in white exactly,
+     so the illustration's edge disappears into the page instead of
+     sitting in a visible box. */
+  .bg-white-anthurium, .bg-red-a, .bg-red-b{ background-color: #FEFEFE; }
+  .bg-ivory-botanical{ background-color: #FFFBF7; }
+
+  /* ---- Background A · White Anthurium — hero, countdown, closing ---- */
+  .bg-white-anthurium::before{
+    background-image: url('assets/bg-white-anthurium.webp');
+    background-position: right center;
+    background-size: contain;
+    top:auto; bottom:0; left:auto; right:0;
+    width: min(30vw, 400px); height: 70%;
   }
-  @media (max-width: 900px){
-    .bg-1, .bg-2, .bg-3{ background-attachment: scroll; }
+  /* ---- Background B1 · Red Anthurium — wedding ceremony ---- */
+  .bg-red-a::before{
+    background-image: url('assets/bg-red-anthurium-a.webp');
+    background-position: left bottom;
+    background-size: contain;
+    top:auto; bottom:0; left:0; right:auto;
+    width: min(26vw, 360px); height: 60%;
   }
-  .on-light.bg-1, .on-light.bg-2, .on-light.bg-3{
-    background-image:
-      radial-gradient(ellipse 75% 65% at 50% 50%, rgba(245,241,231,.55) 0%, rgba(245,241,231,.2) 55%, rgba(245,241,231,0) 80%),
-      var(--bg-img);
+  /* ---- Background B2 · Red Ginger — reception (single artwork already
+       carries both the small top-left accent and the larger lower-right
+       spray, so one layer keeps both visible) ---- */
+  .bg-red-b::before{
+    background-image: url('assets/bg-red-anthurium-b-single.png');
+    background-position: right bottom;
+    background-size: contain;
+    top:auto; bottom:0; right:0; left:auto;
+    width: min(24vw, 320px); height: 55%;
   }
-  .on-dark.bg-1, .on-dark.bg-2, .on-dark.bg-3{
-    background-image:
-      radial-gradient(ellipse 75% 65% at 50% 50%, rgba(41,51,34,.55) 0%, rgba(41,51,34,.22) 55%, rgba(41,51,34,0) 80%),
-      var(--bg-img);
+  /* ---- Background C · Ivory Botanical — invitation, family, RSVP ---- */
+  .bg-ivory-botanical::before{
+    background-image: url('assets/bg-ivory-botanical.webp');
+    background-position: left center;
+    background-size: contain;
+    top:auto; bottom:0; left:0; right:auto;
+    width: min(20vw, 260px); height: 55%;
   }
 
-  .on-dark{ color: var(--ivory); }
-  .on-dark .eyebrow{ color: var(--gold-soft); }
-  .on-dark .page-title{ color: var(--ivory); }
-  .on-dark .page-sub{ color: var(--gold-soft); }
-
-  .on-light{ color: var(--dark-green); }
-  .on-light .eyebrow{ color: var(--olive); }
-  .on-light .page-title{ color: var(--dark-green); }
-  .on-light .page-sub{ color: var(--olive); }
+  @media (max-width: 780px){
+    .bg-white-anthurium::before{
+      top:auto; bottom:0; left:auto; right:0;
+      width: 46vw; height: 34vh;
+      background-position: bottom right;
+    }
+    .bg-red-a::before{
+      top:auto; bottom:0; left:0; right:auto;
+      width: 44vw; height: 30vh;
+      background-position: bottom left;
+    }
+    .bg-red-b::before{
+      top:auto; bottom:0; right:0; left:auto;
+      width: 40vw; height: 30vh;
+      background-position: right bottom;
+    }
+    .bg-ivory-botanical::before{
+      top:0; bottom:auto; left:0; right:auto;
+      width: 40vw; height: 28vh;
+      background-position: top left;
+    }
+    .page{ padding: clamp(64px, 10vh, 100px) var(--edge-pad); }
+    .page-inner{ gap:16px; }
+  }
 
   .page-lede{
     font-family: var(--serif);
@@ -614,8 +717,8 @@
     border: 1px solid currentColor;
     transition: background .4s ease, color .4s ease;
   }
-  .on-dark .btn-outline:hover{ background: var(--ivory); color: var(--dark-green); }
-  .on-light .btn-outline:hover{ background: var(--olive); color: var(--ivory); }
+  .btn-outline{ color: var(--dark-green); }
+  .btn-outline:hover{ background: var(--olive); color: var(--ivory); border-color: var(--olive); }
 
   /* ---------- Countdown (integrated into hero page) ---------- */
   .hero-countdown{
@@ -689,18 +792,19 @@
     line-height:1.75;
   }
 
-  /* ---------- RSVP ---------- */
+  /* ---------- RSVP (light theme — sits on the ivory botanical page) ---------- */
   .rsvp{
-    color: var(--ivory);
+    color: var(--ink);
     padding: var(--section-pad) var(--edge-pad) clamp(60px, 8vh, 90px);
     text-align: center;
   }
-  .rsvp .eyebrow{ color: var(--gold-soft); }
+  .rsvp .eyebrow{ color: var(--olive); }
   .rsvp-heading{
     font-family: var(--serif);
     font-weight:500;
     font-size: clamp(30px, 5.5vw, 46px);
     margin: 16px 0 14px;
+    color: var(--dark-green);
   }
   .rsvp-sub{
     font-family: var(--serif);
@@ -709,7 +813,7 @@
     font-size: 17px;
     max-width: 380px;
     margin: 0 auto 40px;
-    opacity: .96;
+    opacity: .92;
     line-height:1.7;
   }
   .rsvp-form{
@@ -738,7 +842,7 @@
     font-size: 17px;
     letter-spacing: 0.04em;
     text-transform: none;
-    color: var(--gold-soft);
+    color: var(--dark-green);
     margin-bottom: 16px;
   }
   .field input[type="text"],
@@ -747,15 +851,15 @@
     width:100%;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(245,241,231,.4);
-    color: var(--ivory);
+    border-bottom: 1px solid rgba(44,42,34,.28);
+    color: var(--ink);
     font-family: var(--sans);
     font-weight:400;
     font-size: 16px;
     padding: 8px 2px;
     transition: border-color .3s ease;
   }
-  .field input::placeholder, .field textarea::placeholder{ color: rgba(245,241,231,.45); }
+  .field input::placeholder, .field textarea::placeholder{ color: rgba(44,42,34,.4); }
   .field input:focus, .field textarea:focus{
     outline:none;
     border-bottom-color: var(--gold);
@@ -764,7 +868,7 @@
   .radio-row{ display:flex; flex-direction:column; align-items:center; gap: 16px; }
   .radio-opt{ display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer; }
   .radio-opt input{ accent-color: var(--gold); width:14px; height:14px; flex-shrink:0; }
-  .radio-opt span{ font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500; }
+  .radio-opt span{ font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500; color: var(--ink); }
   .rsvp-submit{
     margin-top: 6px;
     align-self: center;
@@ -772,20 +876,20 @@
     font-size: 12px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--dark-green);
-    background: var(--ivory);
-    border: 1px solid var(--ivory);
+    color: var(--ivory);
+    background: var(--dark-green);
+    border: 1px solid var(--dark-green);
     padding: 16px 44px;
     cursor:pointer;
     transition: background .4s ease, color .4s ease;
   }
-  .rsvp-submit:hover{ background: transparent; color: var(--ivory); }
+  .rsvp-submit:hover{ background: transparent; color: var(--dark-green); }
   .rsvp-note{
     text-align:center;
     font-size: 12.5px;
     font-weight: 400;
     letter-spacing: 0.06em;
-    color: rgba(245,241,231,.78);
+    color: var(--ink-soft);
     margin-top: 4px;
   }
   .rsvp-success{
@@ -801,32 +905,9 @@
     font-weight: 500;
     font-size: 21px;
     margin-bottom: 8px;
+    color: var(--dark-green);
   }
-  .rsvp-success p:last-child{ font-size: 13.5px; letter-spacing: 0.08em; opacity:.9; }
-
-  /* ---------- RSVP within unified section styling ---------- */
-  .rsvp-section .field input[type="text"],
-  .rsvp-section .field input[type="number"],
-  .rsvp-section .field textarea{
-    width:100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(245,241,231,.4);
-    color: var(--ivory);
-    font-family: var(--sans);
-    font-weight:400;
-    font-size: 16px;
-    padding: 8px 2px;
-    transition: border-color .3s ease;
-  }
-  .rsvp-section .field input::placeholder, 
-  .rsvp-section .field textarea::placeholder{ color: rgba(245,241,231,.45); }
-  .rsvp-section .field input:focus, 
-  .rsvp-section .field textarea:focus{
-    outline:none;
-    border-bottom-color: var(--gold);
-  }
-  .rsvp-section .rsvp-submit:hover{ background: transparent; color: var(--ivory); }
+  .rsvp-success p:last-child{ font-size: 13.5px; letter-spacing: 0.08em; opacity:.85; }
 
   /* ---------- Footer / final page (Section 7) ---------- */
   .footer.page{ min-height: 78svh; }
@@ -836,6 +917,7 @@
     font-size: clamp(30px, 6.4vw, 50px);
     margin: 18px 0;
     letter-spacing: 0.02em;
+    color: var(--dark-green);
   }
   .footer-amp{
     font-family: var(--script);
@@ -868,7 +950,7 @@
     margin-top: 44px;
     font-size: 10px;
     letter-spacing: 0.14em;
-    color: rgba(245,241,231,.4);
+    color: rgba(44,42,34,.4);
   }
 
   /* responsive tightening for very small screens */
@@ -903,21 +985,29 @@
 
 <!-- =============== SECTION 1 — HERO / OPENING COVER =============== -->
 <div id="opening">
-  <div class="opening-content">
-    <div class="opening-mark" aria-hidden="true"></div>
-    <p class="eyebrow opening-eyebrow">With Love &amp; Joy</p>
-    <div class="opening-names">
-      Evin Thomas
-      <span class="amp">&amp;</span>
-      Sneha Sara Santhosh
+  <div class="opening-flower" aria-hidden="true"></div>
+  <div class="opening-grid">
+    <div class="opening-content">
+      <div class="opening-names">
+        EVIN THOMAS
+        <span class="amp">and</span>
+        SNEHA SARA SANTHOSH
+      </div>
+      <p class="opening-invite-line">Please join us for our wedding</p>
+      <p class="opening-date">
+        Sunday, January 10, 2027<br>
+        At 3:00 PM<br>
+        St. George Jacobite Syrian Church<br>
+        Puthupally, Kottayam
+      </p>
+      <p class="opening-reception">reception to follow</p>
+      <button class="open-btn" id="openBtn" type="button">Open Invitation</button>
     </div>
-    <p class="opening-date">10 January 2027</p>
-    <button class="open-btn" id="openBtn" type="button">Open Invitation</button>
   </div>
 </div>
 
 <!-- =============== SECTION 2 — INVITATION =============== -->
-<section class="page bg-2 on-light" id="home">
+<section class="page bg-ivory-botanical" id="home">
   <div class="page-inner">
     <p class="eyebrow eyebrow-strong reveal">With Great Joy</p>
     <p class="page-lede reveal reveal-delay-1">We invite you to the wedding &amp; reception of our beloved</p>
@@ -965,7 +1055,7 @@
 </section>
 
 <!-- =============== SECTION 3 — FAMILY =============== -->
-<section class="page bg-2 on-light" id="family">
+<section class="page bg-ivory-botanical" id="family">
   <div class="page-inner" style="max-width:760px;">
     <!-- <p class="verse reveal">
       &ldquo;And now these three remain: faith, hope, and love.<br>
@@ -1014,11 +1104,9 @@
   </div>
 </section>
 
-<!-- =============== SECTION 4 — WEDDING, RECEPTION & RSVP =============== -->
-<section class="page bg-3 on-dark" id="wedding">
-  <div class="page-inner" style="max-width: 800px; gap: clamp(40px, 8vh, 80px);">
-    
-    <!-- Wedding Ceremony -->
+<!-- =============== SECTION 4 — WEDDING CEREMONY =============== -->
+<section class="page bg-red-a" id="wedding">
+  <div class="page-inner">
     <div class="event-frame">
       <h2 class="page-title reveal">The Wedding Ceremony</h2>
       <p class="event-meta reveal reveal-delay-1">10 January 2027<br>Sunday</p>
@@ -1033,9 +1121,13 @@
         View Location
       </a>
     </div>
+  </div>
+</section>
 
-    <!-- Reception -->
-    <div class="event-frame" id="reception">
+<!-- =============== SECTION 5 — RECEPTION =============== -->
+<section class="page bg-red-b" id="reception">
+  <div class="page-inner">
+    <div class="event-frame">
       <h2 class="page-title reveal">Reception to follow</h2>
       <p class="event-meta reveal reveal-delay-1">10 January 2027</p>
       <p class="event-meta reveal reveal-delay-1">6.30 PM onwards</p>
@@ -1048,44 +1140,45 @@
         View Location
       </a>
     </div>
+  </div>
+</section>
 
-    <!-- RSVP -->
-    <div class="rsvp-section" id="rsvp" style="margin-top: clamp(20px, 4vh, 40px);">
-      <span class="eyebrow reveal">Kindly Respond</span>
-      <h2 class="page-title reveal reveal-delay-1" style="margin: 16px 0 14px;">RSVP</h2>
-      <p class="rsvp-sub reveal reveal-delay-1" style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 17px; max-width: 380px; margin: 0 auto 40px; opacity: .96; line-height:1.7;">We would be delighted to celebrate this special day with you.</p>
+<!-- =============== SECTION 6 — RSVP =============== -->
+<section class="page bg-ivory-botanical" id="rsvp">
+  <div class="page-inner rsvp-section" style="max-width:460px;">
+    <span class="eyebrow reveal">Kindly Respond</span>
+    <h2 class="rsvp-heading reveal reveal-delay-1">RSVP</h2>
+    <p class="rsvp-sub reveal reveal-delay-1">We would be delighted to celebrate this special day with you.</p>
 
-      <form class="rsvp-form reveal reveal-delay-2" id="rsvpForm" style="max-width: 460px; margin: 0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap: 24px;">
-        <div class="field" style="width:100%;">
-          <label for="rsvpName" style="display:block; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: 10px;">Name</label>
-          <input type="text" id="rsvpName" name="name" placeholder="Your full name" required style="width:100%; background: transparent; border: none; border-bottom: 1px solid rgba(245,241,231,.4); color: var(--ivory); font-family: var(--sans); font-weight:400; font-size: 16px; padding: 8px 2px; transition: border-color .3s ease;">
-        </div>
-        <div class="field" style="width:100%;">
-          <label class="attendance-heading" style="font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 17px; letter-spacing: 0.04em; text-transform: none; color: var(--gold-soft); margin-bottom: 16px;">Will You Join Us?</label>
-          <div class="radio-row" style="display:flex; flex-direction:column; align-items:center; gap: 16px;">
-            <label class="radio-opt" style="display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer;"><input type="radio" name="attendance" value="joyfully-accept" checked style="accent-color: var(--gold); width:14px; height:14px; flex-shrink:0;"><span style="font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500;">Joyfully Accept</span></label>
-            <label class="radio-opt" style="display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer;"><input type="radio" name="attendance" value="regretfully-decline" style="accent-color: var(--gold); width:14px; height:14px; flex-shrink:0;"><span style="font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500;">Regretfully Decline</span></label>
-          </div>
-        </div>
-        <div class="field" style="width:100%;">
-          <label for="rsvpMessage" style="display:block; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: 10px;">Message</label>
-          <textarea id="rsvpMessage" name="message" placeholder="A note for the couple (optional)" style="width:100%; background: transparent; border: none; border-bottom: 1px solid rgba(245,241,231,.4); color: var(--ivory); font-family: var(--sans); font-weight:400; font-size: 16px; padding: 8px 2px; transition: border-color .3s ease; resize: vertical; min-height: 70px;"></textarea>
-        </div>
-        <button type="submit" class="rsvp-submit" style="margin-top: 6px; align-self: center; font-family: var(--sans); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--dark-green); background: var(--ivory); border: 1px solid var(--ivory); padding: 16px 44px; cursor:pointer; transition: background .4s ease, color .4s ease;">Confirm RSVP</button>
-        <p class="rsvp-note" style="text-align:center; font-size: 12.5px; font-weight: 400; letter-spacing: 0.06em; color: rgba(245,241,231,.78); margin-top: 4px;">Kindly respond by 20 December 2026</p>
-      </form>
-
-      <div class="rsvp-success" id="rsvpSuccess" style="display:none; text-align:center; padding: 30px 20px; border: 1px solid var(--gold);">
-        <p style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 21px; margin-bottom: 8px;">Thank you for your response.</p>
-        <p style="font-size: 13.5px; letter-spacing: 0.08em; opacity:.9;">We can't wait to celebrate with you.</p>
+    <form class="rsvp-form reveal reveal-delay-2" id="rsvpForm">
+      <div class="field">
+        <label for="rsvpName">Name</label>
+        <input type="text" id="rsvpName" name="name" placeholder="Your full name" required>
       </div>
-    </div>
+      <div class="field">
+        <label class="attendance-heading">Will You Join Us?</label>
+        <div class="radio-row">
+          <label class="radio-opt"><input type="radio" name="attendance" value="joyfully-accept" checked><span>Joyfully Accept</span></label>
+          <label class="radio-opt"><input type="radio" name="attendance" value="regretfully-decline"><span>Regretfully Decline</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="rsvpMessage">Message</label>
+        <textarea id="rsvpMessage" name="message" placeholder="A note for the couple (optional)"></textarea>
+      </div>
+      <button type="submit" class="rsvp-submit">Confirm RSVP</button>
+      <p class="rsvp-note">Kindly respond by 20 December 2026</p>
+    </form>
 
+    <div class="rsvp-success" id="rsvpSuccess">
+      <p>Thank you for your response.</p>
+      <p>We can't wait to celebrate with you.</p>
+    </div>
   </div>
 </section>
 
 <!-- =============== SECTION 7 — FINAL / FOOTER =============== -->
-<footer class="page footer bg-1 on-dark" id="finale">
+<footer class="page footer bg-white-anthurium" id="finale">
   <div class="page-inner">
     <div class="hairline-h" style="max-width:180px; margin:0 auto 40px; opacity:.5;"></div>
     <p class="eyebrow reveal">With Love &amp; Joy</p>
