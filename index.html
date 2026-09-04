@@ -263,7 +263,7 @@
   .opening-names{
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(34px, 5.6vw, 54px);
+    font-size: clamp(30px, 5vw, 48px);
     color: var(--ink);
     letter-spacing: 0.015em;
     line-height:1.18;
@@ -347,7 +347,7 @@
       padding-top: 20vh;
       gap: 10px;
     }
-    .opening-names{ font-size: clamp(28px, 8.5vw, 40px); }
+    .opening-names{ font-size: clamp(25px, 7.5vw, 36px); }
     .opening-date{ font-size: 11.5px; line-height: 1.75; }
     .opening-invite-line{ font-size: 11px; }
     .opening-reception{ margin-bottom: 4px; }
@@ -366,7 +366,7 @@
       background-size: contain;
     }
     .opening-content{ max-width: 65vw; padding-top: 15vh; }
-    .opening-names{ font-size: clamp(24px, 8vw, 32px); }
+    .opening-names{ font-size: clamp(21px, 7vw, 28px); }
   }
 
   /* ================= INVITATION-SUITE PAGES ================= */
@@ -413,8 +413,9 @@
   /* Each canvas colour matches its own artwork's baked-in white exactly,
      so the illustration's edge disappears into the page instead of
      sitting in a visible box. */
-  .bg-white-anthurium, .bg-red-a, .bg-red-b{ background-color: #FEFEFE; }
+  .bg-white-anthurium{ background-color: #FEFEFE; }
   .bg-ivory-botanical{ background-color: #FFFBF7; }
+  .bg-wedding-ceremony, .bg-reception{ background-color: #FFFBF7; }
 
   /* ---- Background A · White Anthurium — hero, countdown, closing ---- */
   .bg-white-anthurium::before{
@@ -424,31 +425,29 @@
     top:auto; bottom:0; left:auto; right:0;
     width: min(30vw, 400px); height: 70%;
   }
-  /* ---- Background B1 · Red Anthurium — wedding ceremony ---- */
-  .bg-red-a::before{
-    background-image: url('assets/bg-red-anthurium-b.webp');
-    background-position: left bottom;
-    background-size: contain;
-    top:auto; bottom:0; left:0; right:auto;
-    width: min(26vw, 360px); height: 60%;
-  }
-  /* ---- Background B2 · Red Ginger — reception (single artwork already
-       carries both the small top-left accent and the larger lower-right
-       spray, so one layer keeps both visible) ---- */
-  .bg-red-b::before{
-    background-image: url('assets/bg-red-anthurium-b-single.png');
-    background-position: right bottom;
-    background-size: contain;
-    top:auto; bottom:0; right:0; left:auto;
-    width: min(24vw, 320px); height: 55%;
-  }
-  /* ---- Background C · Ivory Botanical — invitation, family, RSVP ---- */
+  /* ---- Background B · Ivory Botanical — invitation, family, RSVP ---- */
   .bg-ivory-botanical::before{
     background-image: url('assets/bg-ivory-botanical.webp');
     background-position: left center;
     background-size: contain;
     top:auto; bottom:0; left:0; right:auto;
     width: min(20vw, 260px); height: 55%;
+  }
+  /* ---- Background C · Wedding Ceremony — positioned at left ---- */
+  .bg-wedding-ceremony::before{
+    background-image: url('assets/ChatGPT Image Sep 4, 2026, 04_23_13 PM.png');
+    background-position: left center;
+    background-size: contain;
+    top: 0; bottom: 0; left: 0; right: auto;
+    width: min(25vw, 300px); height: 100%;
+  }
+  /* ---- Background D · Reception — positioned at right ---- */
+  .bg-reception::before{
+    background-image: url('assets/ChatGPT Image Sep 4, 2026, 04_24_25 PM.png');
+    background-position: right center;
+    background-size: contain;
+    top: 0; bottom: 0; left: auto; right: 0;
+    width: min(25vw, 300px); height: 100%;
   }
 
   @media (max-width: 780px){
@@ -458,20 +457,22 @@
       background-position: center center;
       background-size: contain;
     }
-    .bg-red-a::before{
-      top:auto; bottom:0; left:0; right:auto;
-      width: 44vw; height: 30vh;
-      background-position: bottom left;
-    }
-    .bg-red-b::before{
-      top:auto; bottom:0; right:0; left:auto;
-      width: 40vw; height: 30vh;
-      background-position: right bottom;
-    }
     .bg-ivory-botanical::before{
       top:0; bottom:auto; left:0; right:auto;
       width: 40vw; height: 28vh;
       background-position: top left;
+    }
+    .bg-wedding-ceremony::before{
+      top: 30px; bottom: auto; left: 0; right: auto;
+      width: 35vw; height: calc(100% - 30px);
+      background-position: left top;
+      background-size: contain;
+    }
+    .bg-reception::before{
+      top: 60%; bottom: auto; left: auto; right: 0;
+      width: 35vw; height: 40%;
+      background-position: right top;
+      background-size: contain;
     }
     .page{ padding: clamp(64px, 10vh, 100px) var(--edge-pad); }
     .page-inner{ gap:16px; }
@@ -884,7 +885,7 @@
     border-bottom-color: var(--gold);
   }
   .field textarea{ resize: vertical; min-height: 70px; }
-  .radio-row{ display:flex; flex-direction:column; align-items:center; gap: 16px; }
+  .radio-row{ display:flex; flex-direction:column; align-items:center; gap: 16px; margin-bottom: 24px; }
   .radio-opt{ display:flex; align-items:center; justify-content:center; gap: 16px; cursor:pointer; }
   .radio-opt input{ accent-color: var(--gold); width:14px; height:14px; flex-shrink:0; }
   .radio-opt span{ font-size: 14px; letter-spacing: 0.06em; text-transform:uppercase; font-weight:500; color: var(--ink); }
@@ -929,7 +930,9 @@
   .rsvp-success p:last-child{ font-size: 13.5px; letter-spacing: 0.08em; opacity:.85; }
 
   /* ---------- Footer / final page (Section 7) ---------- */
-  .footer.page{ min-height: 78svh; }
+  .footer.page{ min-height: 78svh; text-align: left; justify-content: flex-start; }
+  .footer .page-inner{ align-items: flex-start; }
+  .footer .hairline-h{ margin: 0 0 40px 0 !important; }
   .footer-names{
     font-family: var(--serif);
     font-weight:500;
@@ -978,6 +981,7 @@
     .countdown-grid{ gap: 8px; }
     .countdown-unit{ min-width: 40px; }
     .countdown-num{ font-size: 22px; }
+    .radio-row{ margin-bottom: 28px; }
   }
 </style>
 </head>
@@ -1006,7 +1010,7 @@
 <div id="opening">
   <div class="opening-flower" aria-hidden="true"></div>
   <div class="opening-grid">
-    <div class="opening-content">
+    <div class="opening-content"><br><br><br><br>
       <div class="opening-names">
         EVIN THOMAS
         <span class="amp">and</span>
@@ -1014,12 +1018,9 @@
       </div>
       <p class="opening-invite-line">Please join us for our wedding</p>
       <p class="opening-date">
-        Sunday, January 10, 2027<br>
-        At 3:00 PM<br>
-        St. George Jacobite Syrian Church<br>
-        Puthupally, Kottayam
+        Sunday, January 10, 2027
       </p>
-      <p class="opening-reception">reception to follow</p>
+      <!-- <p class="opening-reception">reception to follow</p> -->
       <button class="open-btn" id="openBtn" type="button">Open Invitation</button>
     </div>
   </div>
@@ -1124,7 +1125,7 @@
 </section>
 
 <!-- =============== SECTION 4 — WEDDING CEREMONY =============== -->
-<section class="page bg-red-a" id="wedding">
+<section class="page bg-wedding-ceremony" id="wedding">
   <div class="page-inner">
     <div class="event-frame">
       <h2 class="page-title reveal">The Wedding Ceremony</h2>
@@ -1144,7 +1145,7 @@
 </section>
 
 <!-- =============== SECTION 5 — RECEPTION =============== -->
-<section class="page bg-red-b" id="reception">
+<section class="page bg-reception" id="reception">
   <div class="page-inner">
     <div class="event-frame">
       <h2 class="page-title reveal">Reception to follow</h2>
